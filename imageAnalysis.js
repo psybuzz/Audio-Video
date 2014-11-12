@@ -4,47 +4,45 @@ var colorArray = [];
 console.log("Loaded js")
 video = document.getElementById("video1")
 video.addEventListener('loadeddata', function() {
-
     video.currentTime = i;
 
-}, false);
-
-video.addEventListener('seeked', function() {
-
-    /// now video has seeked and current frames will show
-    /// at the time as we expect
-    generateThumbnail(i);
-
-    /// when frame is captured, increase
-    i += 5;
-    console.log("seeked")
-    /// if we are not passed end, seek to next interval
-    if (i <= video.duration) {
-        /// this will trigger another seeked event
-        video.currentTime = i;
-
-    } else {
-        generateAverageColors();
-        /// DONE!, next action
+    var sampleSize = 10;
+    for (var j=0; j<sampleSize + 1; j++){
+        (function (frame) {
+            var time = frame * video.duration / sampleSize;
+            setTimeout(function (){
+                if (frame >= sampleSize){
+                    generateAverageColors();
+                } else {
+                    video.currentTime = time;
+                    setTimeout(function (){
+                        generateThumbnail(time);
+                    }, 400);
+                }
+            }, frame * 800);
+        })(j);
     }
 
 }, false);
 
-function generateThumbnail(i) {     
+function playRandom (){
+    video.play();
+    (function abc (){
+        setTimeout(function () {
+            video.currentTime = Math.random() * video.duration - 1;
+            if (!video.paused) abc();
+        }, 1600);
+    })();
+}
+
+function generateThumbnail(i) {
     //generate thumbnail URL data
     console.log("generated thumbnail");
     canvas = document.getElementById("imageCanvas")
     var context = canvas.getContext('2d');
     context.drawImage(video, 0, 0, 600, 400);
     var imageData = context.getImageData(0, 0, 600, 400);
-    var data = imageData.data;
-    //var dataURL = canvas.toDataURL();
-
-    //create img
-    var img = document.createElement('img');
-    //img.setAttribute('src', dataURL);
-
-    imgArray[imgArray.length] = data;
+    imgArray.push(imageData.data);
 
 /*    //append img in container div
     document.getElementById('thumbnailContainer').appendChild(img);*/
