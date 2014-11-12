@@ -1,0 +1,75 @@
+th {
+    text-align: left;
+}
+
+.navi-part{
+    padding-top: 20px;
+}
+
+table {
+    border-spacing: 5px;
+    margin-bottom: 20px;
+    margin-left: 15px;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th,td {
+    padding: 5px;
+}
+tr {
+    background-color: #fff;
+}
+th {
+	color: white;
+    background-color: black;
+}
+
+.play{
+	margin-right: 50px;
+	margin-left: 15px;
+}
+
+.happy-play {
+	padding: 5px;
+	width: 100%;
+	background-color: #fff;
+	margin-bottom: 10px;
+}
+.sad-play {
+	padding: 5px;
+	width: 100%;
+	background-color: #fff;
+}
+.right-part {
+	background-color: #eee;
+}
+
+span {
+	position:relative;
+	top:10px;
+	left:6px;
+}
+
+.data{
+	margin-right: 50px;
+	margin-left: 15px;
+	padding-bottom: 30px;
+}
+
+.data h3{
+	padding: 5px;
+	font-size: 20px;
+	width: 100%;
+	color: white;
+	background-color: black;
+}
+
+.data p{
+	padding: 5px;
+	position:relative;
+	top:-10px;
+	background-color: white;
+	width: 100%;
+}
