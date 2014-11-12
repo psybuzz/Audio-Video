@@ -3,9 +3,10 @@ print 'Starting...'
 from textblob import TextBlob
 from textblob.sentiments import NaiveBayesAnalyzer
 print 'Loaded libraries'
+nba = NaiveBayesAnalyzer()
 
 def analyse(sentence):
-	blob = TextBlob(sentence, analyzer=NaiveBayesAnalyzer())
+	blob = TextBlob(sentence, analyzer=nba)
 	return blob.sentiment
 
 # Load the subtitle file
