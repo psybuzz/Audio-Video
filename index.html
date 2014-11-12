@@ -15,7 +15,6 @@
     
     <link rel="stylesheet" type="text/css" href="index.css">
   </head>
-
 	<style> /* set the CSS */
 
 		body { font: 12px Arial;}
@@ -95,6 +94,7 @@ d3.csv("data.csv", function(error, data) {
     svg.append("path")
         .attr("class", "line")
         .attr("d", valueline(data));
+
 
     // Add the scatterplot
     svg.selectAll("dot")
