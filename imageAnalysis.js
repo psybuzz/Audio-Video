@@ -1,4 +1,4 @@
-var i = 150;
+var i = 0;
 var imgArray = [];
 var colorArray = [];
 console.log("Loaded js")
