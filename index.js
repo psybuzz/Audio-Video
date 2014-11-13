@@ -2,7 +2,6 @@ var graph = document.getElementById("graph")
 video = document.getElementById("video1")
 
 graph.addEventListener("click", getClickPosition, false);
-//4972 seconds in Totoro
 function getClickPosition(e) {
     var xPosition = e.clientX;
     var yPosition = e.clientY;
@@ -18,5 +17,5 @@ function getClickPosition(e) {
 }
 
 function jumpToTime(proportion){
-	video.currentTime = proportion * 4972;
+	video.currentTime = proportion * video.duration;
 }
