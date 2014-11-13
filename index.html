@@ -76,9 +76,12 @@
   	<div class="col-md-8" id="leftpart">
       <div class="contained">
     		<a href="#" id="backToMovies">< choose another movie</a>
-        <h2>My Neighbor Totoro</h2>
+        <h2 style="margin-bottom: 0px">My Neighbor Totoro</h2>
+        <h3 style="margin-top: 5px"><small>Hayao Miyazaki, 1988</small></h3>
         <p class="light">Two girls, Satsuke and Mei live with their dad on a small farm in Japan.  While their mother recuperates, Mei gets lost.  Womp womp. 10/10 would watch.</p>
-        <h3 style="margin-bottom: 0"><small>Hayao Miyazaki, 1988</small></h3>
+        <br>
+        <ul id="statsList" class="list-unstyled">
+        </ul>
         <h2 id="clock"></h2>
       </div>
 
@@ -253,6 +256,7 @@ d3.csv("luminence.csv", function(error, data) {
 
 
     <script type="text/javascript" src="ui.js"></script>
+    <script type="text/javascript" src="luminence.js"></script>
     <script type="text/javascript" src="index.js"></script>
   </body>
 
