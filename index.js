@@ -25,8 +25,9 @@ $(document).ready(function() {
 
 	$("#videoDiv").click(function(){
 		video.pause();
-		$("#overlayDiv").fadeToggle()
-		$("#videoDiv").fadeToggle()
+		$("#overlayDiv").fadeOut()
+		$("#videoDiv").fadeOut()
+		queue = [];
 	});
 
 });

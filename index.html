@@ -173,7 +173,9 @@ d3.csv("luminence.csv", function(error, data) {
 
     // Nest the entries by symbol
     var dataNest = d3.nest()
-        .key(function(d) {return d.theName;})
+        .key(function(d) {
+          return d.theName;
+        })
         .entries(data);
 
     var color = d3.scale.category10();   // set the colour scale

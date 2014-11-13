@@ -1,5 +1,6 @@
 var video = $('video')[0];
 var clock = $('#clock');
+var queue = [];
 
 $('.picholder').click(function() {
 	$('#movieList').fadeOut(function () {
@@ -35,11 +36,43 @@ $('#graph').mousemove(function (e){
 $('#happyButton').click(function (){
 	$("#overlayDiv").fadeIn();
 	$("#videoDiv").fadeIn(function (){
-		var queue = positiveScenes.slice(0);
-		var curr = queue[0];
-		video.currentTime = curr.start;
-		video.play();
-		var diff = curr.end - curr.start;
-		console.log(curr.text);
+		queue = positiveScenes.slice(0);
+
+		function process(){
+			if (queue.length < 1) return;
+			var curr = queue.splice(0, 1)[0];
+			video.currentTime = curr.start - 8;
+			video.play();
+			var diff = curr.end - curr.start + 1;
+			console.log(curr.text, curr.start);
+			setTimeout(function (){
+				process();
+				if (queue.length <= 1) video.pause();
+			}, diff * 1000 + 2000);
+		}
+
+		process();
+	});
+});
+
+$('#sadButton').click(function (){
+	$("#overlayDiv").fadeIn();
+	$("#videoDiv").fadeIn(function (){
+		queue = negativeScenes.slice(0);
+
+		function process(){
+			if (queue.length < 1) return;
+			var curr = queue.splice(0, 1)[0];
+			video.currentTime = curr.start - 8;
+			video.play();
+			var diff = curr.end - curr.start + 1;
+			console.log(curr.text, curr.start);
+			setTimeout(function (){
+				process();
+				if (queue.length <= 1) video.pause();
+			}, diff * 1000 + 2000);
+		}
+
+		process();
 	});
 });

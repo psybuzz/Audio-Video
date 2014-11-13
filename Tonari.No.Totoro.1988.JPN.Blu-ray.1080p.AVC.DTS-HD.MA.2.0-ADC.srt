@@ -1,3 +1,46 @@
+﻿1
+00:00:07,008 --> 00:00:11,012
+Tokuma Shoten Presents
+
+2
+00:00:30,573 --> 00:00:38,915
+<i>My Neighbor Totoro</i>
+
+3
+00:00:39,624 --> 00:00:44,712
+Executive Producer
+Yasuyoshi Tokuma
+
+4
+00:00:46,089 --> 00:00:51,344
+Produced by
+Tatsumi Yamashita and Hideo Ogata
+
+5
+00:00:52,637 --> 00:00:57,517
+Supervising Animator
+Yoshiharu Sato
+
+6
+00:00:58,935 --> 00:01:04,023
+Art Director
+Kazuo Oga
+
+7
+00:01:05,400 --> 00:01:10,446
+Music by
+Joe Hisaishi
+
+8
+00:01:59,370 --> 00:02:04,334
+Producer
+Toru Hara
+
+9
+00:02:05,126 --> 00:02:11,007
+Written and Directed by
+Hayao Miyazaki
+
 10
 00:02:32,153 --> 00:02:33,821
 Dad, do you want a caramel?
@@ -2468,3 +2511,4 @@ A Studio Ghibli Film
 586
 01:26:14,379 --> 01:26:20,885
 The End
+
