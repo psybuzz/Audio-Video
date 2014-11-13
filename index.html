@@ -90,13 +90,6 @@
 <script type="text/javascript" src="totoroSubs.js"></script>
 
 <script>
-Math.average = function (arr){
-  var sum = 0;
-  for (var i = 0; i < arr.length; i++) {
-    sum += arr[i];
-  }
-  return sum / arr.length;
-}
 
 /**
  * Subsamples an array of data to reduce complexity.
@@ -230,26 +223,26 @@ d3.csv("luminence.csv", function(error, data) {
   	<div class="col-md-4">
       <div class="right-part">
         <div class="play">
-        <button class="btn btn-primary btn-lg">
+        <button class="btn btn-lg playButton" id="happyButton">
         <div class="row">
           <div class="col-md-2">
             <img src="black-play-button.png" width="47" height="47" onclick="">
           </div>
           <div class="col-md-9">
-            <h3>Play Happy Scenes</h3>
+            <h4>Play Happy Scenes</h4>
           </div>
         </div>
         </button>
-        <div class="sad-play">
+        <button class="btn btn-lg playButton" id="sadButton">
         <div class="row">
           <div class="col-md-2">
-            <span><img src="black-play-button.png" width="47" height="47" onclick=""></span>
+            <img src="black-play-button.png" width="47" height="47" onclick="">
           </div>
           <div class="col-md-9">
-            <h3>Play Sad Scenes</h3>
+            <h4>Play Sad Scenes</h4>
           </div>
         </div>
-        </div>
+        </button>
         </div>
         </div>
   	</div>

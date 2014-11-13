@@ -124,19 +124,19 @@ th {
 	margin-left: 15px;
 }
 
-.happy-play {
-	padding: 5px;
+.playButton{
+	margin: 5px;
 	width: 100%;
-	background-color: #fff;
-	margin-bottom: 10px;
+	background-color: white;
+	border: 1px solid #357ebd;
 }
-.sad-play {
-	padding: 5px;
-	width: 100%;
-	background-color: #fff;
+.playButton:hover{
+	background-color: #357ebd;
+	color: white;
 }
+
 .right-part {
-	background-color: #eee;
+
 }
 
 span {
