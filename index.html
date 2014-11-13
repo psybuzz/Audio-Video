@@ -8,15 +8,11 @@
     <link href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/shift.css" rel="stylesheet">
     
     <link rel="stylesheet" href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/bootstrap.css">
-
-	<link rel="stylesheet" href="style.css" media="screen" type="text/css">
-
-	
-    
+        
     <link rel="stylesheet" type="text/css" href="index.css">
      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   </head>
-	<style> /* set the CSS */
+  <style> /* set the CSS */
 
 		body { font: 12px Arial;}
 
@@ -34,7 +30,13 @@
 			shape-rendering: crispEdges;
 		}
 
-		</style>
+		.legend {
+			font-size: 16px;
+			font-weight: bold;
+			text-anchor: middle;
+		}
+
+	</style>
 		
   <body>
   <div id="overlayDiv">
@@ -56,12 +58,9 @@
 <script>
 
 // Set the dimensions of the canvas / graph
-var margin = {top: 30, right: 20, bottom: 30, left: 50},
-    width = 750 - margin.left - margin.right,
-    height = 450 - margin.top - margin.bottom;
-
-// Parse the date / time
-var parseDate = d3.time.format("%d-%b-%y").parse;
+var margin = {top: 30, right: 20, bottom: 70, left: 50},
+    width = 600 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
 
 // Set the ranges
 var x = d3.time.scale().range([0, width]);
@@ -75,9 +74,9 @@ var yAxis = d3.svg.axis().scale(y)
     .orient("left").ticks(5);
 
 // Define the line
-var valueline = d3.svg.line()
-    .x(function(d) { return x(d.date); })
-    .y(function(d) { return y(d.close); });
+var priceline = d3.svg.line()	
+    .x(function(d) { return x(d.index); })
+    .y(function(d) { return y(d.value); });
     
 // Adds the svg canvas
 var svg = d3.select("body")
@@ -90,44 +89,58 @@ var svg = d3.select("body")
               "translate(" + margin.left + "," + margin.top + ")");
 
 // Get the data
-d3.csv("data.csv", function(error, data) {
+d3.csv("luminence.csv", function(error, data) {
+	console.log(data);
     data.forEach(function(d) {
-        d.date = parseDate(d.date);
-        d.close = +d.close;
+		d.index = +d.index;
+		d.value = +d.value;
     });
 
     // Scale the range of the data
-    x.domain(d3.extent(data, function(d) { return d.date; }));
-    y.domain([0, d3.max(data, function(d) { return d.close; })]);
+    x.domain(d3.extent(data, function(d) { return d.index; }));
+    y.domain([0, d3.max(data, function(d) { return d.value; })]);
 
-    // Add the valueline path.
-    svg.append("path")
-        .attr("class", "line")
-        .attr("d", valueline(data));
+    // Nest the entries by symbol
+    var dataNest = d3.nest()
+        .key(function(d) {return d.theName;})
+        .entries(data);
 
+    var color = d3.scale.category10();   // set the colour scale
 
-    // Add the scatterplot
-    svg.selectAll("dot")
-        .data(data)
-      .enter().append("circle")
-        .attr("r", 3.5)
-        .attr("cx", function(d) { return x(d.date); })
-        .attr("cy", function(d) { return y(d.close); });
+    legendSpace = width/dataNest.length; // spacing for the legend
 
+    // Loop through each symbol / key
+    dataNest.forEach(function(d,i) { 
 
+        svg.append("path")
+            .attr("class", "line")
+            .style("stroke", function() { // Add the colours dynamically
+                return d.color = color(d.key); })
+            .attr("id", 'tag'+d.key.replace(/\s+/g, '')) // assign ID
+            .attr("d", priceline(d.values));
 
+        // Add the Legend
+        svg.append("text")
+            .attr("x", (legendSpace/2)+i*legendSpace)  // space legend
+            .attr("y", height + (margin.bottom/2)+ 5)
+            .attr("class", "legend")    // style the legend
+            .style("fill", function() { // Add the colours dynamically
+                return d.color = color(d.key); })
+            .on("click", function(){
+                // Determine if current line is visible 
+                var active   = d.active ? false : true,
+                newOpacity = active ? 0 : 1; 
+                // Hide or show the elements based on the ID
+                d3.select("#tag"+d.key.replace(/\s+/g, ''))
+                    .transition().duration(100) 
+                    .style("opacity", newOpacity); 
+                // Update whether or not the elements are active
+                d.active = active;
+                })  
+            .text(d.key); 
 
-    /* Add the X Axis
-    svg.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
+    });
 
-    // Add the Y Axis
-    svg.append("g")
-        .attr("class", "y axis")
-        .call(yAxis);*/
-//code from http://bl.ocks.org/d3noob/38744a17f9c0141bcd04
 
 });
 
@@ -138,7 +151,7 @@ d3.csv("data.csv", function(error, data) {
       <div class="navi-part">
         <table>
           <tr>
-            <th>Category:</th>
+            <th>Choose Movie:</th>
           </tr>
           <tr>
             <td onclick="">My Neighbor Totoro </td>
