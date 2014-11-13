@@ -57,6 +57,50 @@
 <script type="text/javascript" src="totoroSubs.js"></script>
 
 <script>
+Math.average = function (arr){
+  var sum = 0;
+  for (var i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
+  return sum / arr.length;
+}
+
+/**
+ * Subsamples an array of data to reduce complexity.
+ * 
+ * @param  {Array.Number} data          The data to subsample.
+ * @param  {Number} samplingRate        The window of numbers in a sample.
+ * @param  {Boolean} useAverage         Whether or not to average the window.
+ * 
+ * @return {Array.Number}               The subsampled data.
+ */
+function subsample (data, samplingRate, useAverage) {
+  useAverage = useAverage || true;
+  samplingRate = samplingRate || 5;
+
+  var label = data[0].theName;
+  var temp = [];
+  for (var i=0, len=(data.length - 1)/samplingRate; i<len; i++){
+    if (useAverage){
+      var squish = [];
+      for (var j = 0; j < samplingRate; j++) {
+        if (i*samplingRate + j < data.length){
+          squish.push(parseFloat(data[i*samplingRate + j].value))
+        }
+      }
+      var avg = Math.average(squish);
+      temp.push({
+        index: data[i*samplingRate].index,
+        value: avg,
+        theName: label
+      });
+    } else {
+      temp.push(data[i*samplingRate]);
+    }
+  }
+  console.log(temp.slice(0,3))
+  return temp;
+}
 
 // Set the dimensions of the canvas / graph
 var margin = {top: 30, right: 20, bottom: 70, left: 50},
@@ -91,7 +135,9 @@ var svg = d3.select("body")
 
 // Get the data
 d3.csv("luminence.csv", function(error, data) {
-    data = data.concat(sentimentPoints);
+    data = subsample(data, null, false);
+    subSentiment = subsample(sentimentPoints, null, false);
+    data = data.concat(subSentiment);
     
     data.forEach(function(d) {
 		d.index = +d.index;
