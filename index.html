@@ -9,11 +9,12 @@
     
     <link rel="stylesheet" href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/bootstrap.css">
 
-<!-- 	<link rel="stylesheet" href="css/style.css" media="screen" type="text/css"
- -->
+	<link rel="stylesheet" href="style.css" media="screen" type="text/css">
+
 	
     
     <link rel="stylesheet" type="text/css" href="index.css">
+     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   </head>
 	<style> /* set the CSS */
 
@@ -36,14 +37,18 @@
 		</style>
 		
   <body>
+  <div id="overlayDiv">
+  </div>
+  <div id="videoDiv">
+  <video id="video1" controls>
+    <source src="video1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
   <div class="row">
 
   	<div class="col-md-8">
   		<p> <img src="MyNeighborTotoro-Logo.jpg" alt="Mountain View" style="width:400px;height:120px" hspace="25" vspace="15">      <img src="My-Neighbor-Totoro.jpg" alt="Mountain View" style="width:300px;height:120px" vspace="15"> </p>
-      <video id="video1" width="320" height="240" controls>
-      <source src="video1.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-      </video>
 
 	<!-- load the d3.js library -->    
 <script src="http://d3js.org/d3.v3.min.js"></script>
