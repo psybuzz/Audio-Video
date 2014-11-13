@@ -7,7 +7,7 @@
 
     <link href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/shift.css" rel="stylesheet">
     
-    <link rel="stylesheet" href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/bootstrap.css">
+    <link rel="stylesheet" href="bootstrap.min.css">
 
     <link rel="stylesheet" type="text/css" href="index.css">
      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -43,18 +43,52 @@
   </div>
   <div id="videoDiv">
   <video id="video1" controls>
-    <source src="video1.mp4" type="video/mp4">
+    <!-- <source src="video1.mp4" type="video/mp4"> -->
     Your browser does not support the video tag.
   </video>
 </div>
-  <div class="row">
+  <div>
+      <h1 class="title">I can't tie my shoelaces, but I can plot your movie</h1>
+  </div>
+  <div class="contained" id="movieList">
+    <h3>Movies</h3>
+    <div>
+      <div class="picholder">
+        <img src="My-Neighbor-Totoro.jpg" class="pic" />
+        <span class="picoverlay">My Neighbor Totoro</span>
+      </div>
+      <div class="picholder">
+        <img src="matrix.jpeg" class="pic" />
+        <span class="picoverlay">The Matrix</span>
+      </div>
+      <div class="picholder">
+        <img src="rushhour.jpg" class="pic" />
+        <span class="picoverlay">Rush Hour</span>
+      </div>
+      <div class="picholder">
+        <img src="lotr.jpg" class="pic" />
+        <span class="picoverlay">Lord of the Rings: The Two Towers</span>
+      </div>
+      <div class="picholder">
+        <img src="inception.jpg" class="pic" />
+        <span class="picoverlay">Inception</span>
+      </div>
+    </div>
+  </div>
+  <div class="row" id="mainContainer">
 
-  	<div class="col-md-8">
-  		<p> <img src="MyNeighborTotoro-Logo.jpg" alt="Mountain View" style="width:400px;height:120px" hspace="25" vspace="15">      <img src="My-Neighbor-Totoro.jpg" alt="Mountain View" style="width:300px;height:120px" vspace="15"> </p>
+  	<div class="col-md-8" id="leftpart">
+      <div class="contained">
+    		<a href="#" id="backToMovies">< choose another movie</a>
+        <h2>My Neighbor Totoro</h2>
+        <p class="light">Two girls, Satsuke and Mei live with their dad on a small farm in Japan.  While their mother recuperates, Mei gets lost.  Womp womp. 10/10 would watch.</p>
+        <h3 style="margin-bottom: 0"><small>Hayao Miyazaki, 1988</small></h3>
+      </div>
 
 	<!-- load the d3.js library -->    
-<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="d3.min.js"></script>
 <script type="text/javascript" src="totoroSubs.js"></script>
+<script type="text/javascript" src="ui.js"></script>
 
 <script>
 Math.average = function (arr){
@@ -124,7 +158,7 @@ var priceline = d3.svg.line()
     .y(function(d) { return y(d.value); });
     
 // Adds the svg canvas
-var svg = d3.select("body")
+var svg = d3.select("#leftpart")
     .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -195,52 +229,35 @@ d3.csv("luminence.csv", function(error, data) {
 </script>
   	</div>
   	<div class="col-md-4">
-    <div class="right-part">
-      <div class="navi-part">
-        <table>
-          <tr>
-            <th>Choose Movie:</th>
-          </tr>
-          <tr>
-            <td onclick="">My Neighbor Totoro </td>
-          </tr>
-          <tr>
-            <td onclick="">Movie 2</td>
-          </tr>
-          <tr>
-            <td onclick="">Movie 3</td>
-          </tr>
-        </table>
-      </div>
-      <div class="play">
-      <button class="btn btn-primary btn-lg">
-      <div class="row">
-        <div class="col-md-2">
-          <img src="black-play-button.png" width="47" height="47" onclick="">
+      <div class="right-part">
+        <div class="play">
+        <button class="btn btn-primary btn-lg">
+        <div class="row">
+          <div class="col-md-2">
+            <img src="black-play-button.png" width="47" height="47" onclick="">
+          </div>
+          <div class="col-md-9">
+            <h3>Play Happy Scenes</h3>
+          </div>
         </div>
-        <div class="col-md-9">
-          <h3>Play Happy Scenes</h3>
+        </button>
+        <div class="sad-play">
+        <div class="row">
+          <div class="col-md-2">
+            <span><img src="black-play-button.png" width="47" height="47" onclick=""></span>
+          </div>
+          <div class="col-md-9">
+            <h3>Play Sad Scenes</h3>
+          </div>
         </div>
-      </div>
-      </button>
-      <div class="sad-play">
-      <div class="row">
-        <div class="col-md-2">
-          <span><img src="black-play-button.png" width="47" height="47" onclick=""></span>
         </div>
-        <div class="col-md-9">
-          <h3>Play Sad Scenes</h3>
         </div>
-      </div>
-      </div>
-      </div>
-      <div class="data">
-        <h3>Data</h3>
-        <p id="data" onclick="">Whatever Data</p>
-      </div>
-      </div>
+        </div>
   	</div>
-  	
+  </div>
+  <br><br>
+  <div class="row contained">
+    <p>All media used herein is property of their creators.  They are included here under terms of fair use for educational purposes.  Luminance values were calculated via relative averaged pixel brightness values.  Sentiment was determined using the TextBlob package for Python.</p>
   </div>
 
 
