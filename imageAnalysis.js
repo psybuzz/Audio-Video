@@ -1,6 +1,7 @@
 var i = 0;
 var imgArray = [];
 var colorArray = [];
+var normalized = [];
 console.log("Loaded js")
 video = document.getElementById("video1")
 video.addEventListener('loadeddata', function() {
@@ -81,13 +82,12 @@ function normalize(){
     var average = sum/colorArray.length;
     console.log(average);
 
-    var normalized = []
-
     for (var i=0; i<colorArray.length; i++){
         normalized[i] = colorArray[i] - average;
     }
 
     console.log(normalized);
+    console.log("Average: " + average);
     console.log("Highest luminence value: " + Math.max.apply(Math, normalized));
     console.log("Lowest luminence value: " + Math.min.apply(Math, normalized));
 }
