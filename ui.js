@@ -31,3 +31,15 @@ $('#graph').mousemove(function (e){
     	clock.text(time);
     }
 });
+
+$('#happyButton').click(function (){
+	$("#overlayDiv").fadeIn();
+	$("#videoDiv").fadeIn(function (){
+		var queue = positiveScenes.slice(0);
+		var curr = queue[0];
+		video.currentTime = curr.start;
+		video.play();
+		var diff = curr.end - curr.start;
+		console.log(curr.text);
+	});
+});
