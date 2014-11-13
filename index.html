@@ -9,8 +9,8 @@
     
     <link rel="stylesheet" href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/bootstrap.css">
 
-	<link rel="stylesheet" href="css/style.css" media="screen" type="text/css"
-
+<!-- 	<link rel="stylesheet" href="css/style.css" media="screen" type="text/css"
+ -->
 	
     
     <link rel="stylesheet" type="text/css" href="index.css">
@@ -75,6 +75,7 @@ var svg = d3.select("body")
     .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
+        .attr("id", "graph")
     .append("g")
         .attr("transform", 
               "translate(" + margin.left + "," + margin.top + ")");
@@ -174,7 +175,7 @@ d3.csv("data.csv", function(error, data) {
 
 
   </body>
-
+  <script type="text/javascript" src="index.js"></script>
 
 </html>
 
