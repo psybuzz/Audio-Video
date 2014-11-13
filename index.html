@@ -4,11 +4,7 @@
   <head>
 
 	<meta charset="UTF-8">
-
-    <link href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/shift.css" rel="stylesheet">
-    
     <link rel="stylesheet" href="bootstrap.min.css">
-
     <link rel="stylesheet" type="text/css" href="index.css">
      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   </head>
@@ -43,7 +39,7 @@
   </div>
   <div id="videoDiv">
   <video id="video1" controls>
-    <!-- <source src="video1.mp4" type="video/mp4"> -->
+    <source src="video1.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 </div>
@@ -83,12 +79,12 @@
         <h2>My Neighbor Totoro</h2>
         <p class="light">Two girls, Satsuke and Mei live with their dad on a small farm in Japan.  While their mother recuperates, Mei gets lost.  Womp womp. 10/10 would watch.</p>
         <h3 style="margin-bottom: 0"><small>Hayao Miyazaki, 1988</small></h3>
+        <h2 id="clock"></h2>
       </div>
 
 	<!-- load the d3.js library -->    
 <script src="d3.min.js"></script>
 <script type="text/javascript" src="totoroSubs.js"></script>
-<script type="text/javascript" src="ui.js"></script>
 
 <script>
 Math.average = function (arr){
@@ -137,8 +133,8 @@ function subsample (data, samplingRate, useAverage) {
 }
 
 // Set the dimensions of the canvas / graph
-var margin = {top: 30, right: 20, bottom: 70, left: 50},
-    width = 1000 - margin.left - margin.right,
+var margin = {top: 30, right: 50, bottom: 20, left: 50},
+    width = window.innerWidth - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
 // Set the ranges
@@ -204,7 +200,7 @@ d3.csv("luminence.csv", function(error, data) {
         // Add the Legend
         svg.append("text")
             .attr("x", (legendSpace/2)+i*legendSpace)  // space legend
-            .attr("y", height + (margin.bottom/2)+ 5)
+            .attr("y", height - margin.bottom)
             .attr("class", "legend")    // style the legend
             .style("fill", function() { // Add the colours dynamically
                 return d.color = color(d.key); })
@@ -215,7 +211,7 @@ d3.csv("luminence.csv", function(error, data) {
                 // Hide or show the elements based on the ID
                 d3.select("#tag"+d.key.replace(/\s+/g, ''))
                     .transition().duration(100) 
-                    .style("opacity", newOpacity); 
+                    .style("opacity", newOpacity).delay(1000); 
                 // Update whether or not the elements are active
                 d.active = active;
                 })  
@@ -261,8 +257,9 @@ d3.csv("luminence.csv", function(error, data) {
   </div>
 
 
+    <script type="text/javascript" src="ui.js"></script>
+    <script type="text/javascript" src="index.js"></script>
   </body>
-  <script type="text/javascript" src="index.js"></script>
 
 </html>
 

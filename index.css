@@ -20,6 +20,10 @@ th {
 	margin: 0px 120px;
 }
 
+#clock{
+	color: dimgray;
+}
+
 .picholder{
 	position: relative;
 	display: inline-block;
