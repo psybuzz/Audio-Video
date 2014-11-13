@@ -59,9 +59,6 @@ var margin = {top: 30, right: 20, bottom: 70, left: 50},
     width = 600 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
-// Parse the date / time
-var parseDate = d3.time.format("%b %Y").parse;
-
 // Set the ranges
 var x = d3.time.scale().range([0, width]);
 var y = d3.scale.linear().range([height, 0]);
@@ -75,8 +72,8 @@ var yAxis = d3.svg.axis().scale(y)
 
 // Define the line
 var priceline = d3.svg.line()	
-    .x(function(d) { return x(d.date); })
-    .y(function(d) { return y(d.price); });
+    .x(function(d) { return x(d.index); })
+    .y(function(d) { return y(d.value); });
     
 // Adds the svg canvas
 var svg = d3.select("body")
@@ -89,19 +86,20 @@ var svg = d3.select("body")
               "translate(" + margin.left + "," + margin.top + ")");
 
 // Get the data
-d3.csv("stocks.csv", function(error, data) {
+d3.csv("luminence.csv", function(error, data) {
+	console.log(data);
     data.forEach(function(d) {
-		d.date = parseDate(d.date);
-		d.price = +d.price;
+		d.index = +d.index;
+		d.value = +d.value;
     });
 
     // Scale the range of the data
-    x.domain(d3.extent(data, function(d) { return d.date; }));
-    y.domain([0, d3.max(data, function(d) { return d.price; })]);
+    x.domain(d3.extent(data, function(d) { return d.index; }));
+    y.domain([0, d3.max(data, function(d) { return d.value; })]);
 
     // Nest the entries by symbol
     var dataNest = d3.nest()
-        .key(function(d) {return d.symbol;})
+        .key(function(d) {return d.theName;})
         .entries(data);
 
     var color = d3.scale.category10();   // set the colour scale
